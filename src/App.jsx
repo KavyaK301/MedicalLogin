@@ -1,15 +1,14 @@
 import React from "react";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Footer from "./components/Footer"; // ✅ Add this line
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/Home/Home"; // Make sure this path is correct
 
 function App() {
   return (
-    <>
-      <Header />
-    
-      <Footer /> {/* ✅ Make sure Footer is correctly placed */}
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 

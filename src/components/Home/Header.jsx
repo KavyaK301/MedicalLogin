@@ -29,7 +29,7 @@ const MedilabHeader = () => {
   const handleDepartmentsMouseLeave = () => {
     const timeout = setTimeout(() => {
       setIsDepartmentsOpen(false);
-    }, 9000); // Small delay to allow moving to dropdown
+    }, 90000); // Small delay to allow moving to dropdown
     setDepartmentsTimeout(timeout);
   };
 
@@ -89,7 +89,7 @@ const MedilabHeader = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-gray-700">Medilab</h1>
+              <h1 className="text-2xl font-bold text-gray-700">MediTrack</h1>
             </div>
 
             {/* Navigation Links - Main Menu */}

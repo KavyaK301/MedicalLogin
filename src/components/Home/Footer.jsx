@@ -9,14 +9,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 pb-12 border-b border-blue-100">
           {/* Medilab Info */}
           <div>
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Medilab</h2>
+            <h2 className="text-xl font-bold text-gray-800 mb-4">MediTrack</h2>
             <p>A108 Adam Street</p>
             <p>New York, NY 535022</p>
             <p className="mt-4 font-semibold">
               Phone: <span className="font-normal">+1 5589 55488 55</span>
             </p>
             <p className="font-semibold">
-              Email: <span className="font-normal">info@example.com</span>
+              Email: <span className="font-normal">meditrack@example.com</span>
             </p>
 
             <div className="flex space-x-4 mt-4">
