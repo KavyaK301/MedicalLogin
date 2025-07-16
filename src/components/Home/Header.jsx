@@ -29,7 +29,7 @@ const MedilabHeader = () => {
   const handleDepartmentsMouseLeave = () => {
     const timeout = setTimeout(() => {
       setIsDepartmentsOpen(false);
-    }, 9000); // Small delay to allow moving to dropdown
+    }, 90000); // Small delay to allow moving to dropdown
     setDepartmentsTimeout(timeout);
   };
 
