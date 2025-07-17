@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home"; // Make sure this path is correct
 import Reception from "./components/Reception/Reception";
+import Billing from "./Pages/Reception/Billing";
 function App() {
   return (
     <Router>
