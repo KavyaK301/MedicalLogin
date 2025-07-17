@@ -10,8 +10,8 @@ const Footer = () => {
           {/* Medilab Info */}
           <div>
             <h2 className="text-xl font-bold text-gray-800 mb-4">MediTrack</h2>
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
+            <p>Kce othakalmandabam </p>
+            <p>Coimbatore, NY 535022</p>
             <p className="mt-4 font-semibold">
               Phone: <span className="font-normal">+1 5589 55488 55</span>
             </p>
@@ -40,12 +40,12 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Useful Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <a href="#home" className="hover:text-blue-600">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <a href="#about" className="hover:text-blue-600">
                   About us
                 </a>
               </li>
