@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import { Calendar, User, Mail, Phone, MessageSquare } from 'lucide-react';
+import React, { useState } from "react";
+import { Calendar, User, Mail, Phone, MessageSquare } from "lucide-react";
 
 const Appointment = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    date: '',
-    department: '',
-    doctor: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    date: "",
+    department: "",
+    doctor: "",
+    message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const departments = [
-    'Cardiology',
-    'Neurology',
-    'Pediatrics',
-    'Orthopedics',
-    'Dermatology',
-    'Gastroenterology'
+    "Cardiology",
+    "Neurology",
+    "Pediatrics",
+    "Orthopedics",
+    "Dermatology",
+    "Gastroenterology",
   ];
 
   const doctors = [
-    'Dr. Smith - Cardiology',
-    'Dr. Johnson - Neurology',
-    'Dr. Williams - Pediatrics',
-    'Dr. Brown - Orthopedics',
-    'Dr. Davis - Dermatology',
-    'Dr. Miller - Gastroenterology'
+    "Dr. Smith - Cardiology",
+    "Dr. Johnson - Neurology",
+    "Dr. Williams - Pediatrics",
+    "Dr. Brown - Orthopedics",
+    "Dr. Davis - Dermatology",
+    "Dr. Miller - Gastroenterology",
   ];
 
   const filteredDoctors = formData.department
-    ? doctors.filter(doc => doc.includes(formData.department))
+    ? doctors.filter((doc) => doc.includes(formData.department))
     : doctors;
 
   const handleSubmit = async (e) => {
@@ -42,7 +42,7 @@ const Appointment = () => {
     setIsSubmitting(true);
 
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     setSubmitted(true);
     setIsSubmitting(false);
@@ -51,23 +51,23 @@ const Appointment = () => {
     setTimeout(() => {
       setSubmitted(false);
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        date: '',
-        department: '',
-        doctor: '',
-        message: ''
+        name: "",
+        email: "",
+        phone: "",
+        date: "",
+        department: "",
+        doctor: "",
+        message: "",
       });
     }, 3000);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value,
-      ...(name === 'department' && { doctor: '' }) // reset doctor if department changes
+      ...(name === "department" && { doctor: "" }), // reset doctor if department changes
     }));
   };
 
@@ -80,12 +80,18 @@ const Appointment = () => {
     !formData.doctor;
 
   return (
-    <section id="appointment" className="py-20 bg-gradient-to-br from-blue-50 to-blue-100">
+    <section
+      id="appointment"
+      className="py-20 bg-gradient-to-br from-blue-50 to-blue-100 scroll-mt-[130px]"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Book an Appointment</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+            Book an Appointment
+          </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Schedule your appointment with our experienced healthcare professionals
+            Schedule your appointment with our experienced healthcare
+            professionals
           </p>
         </div>
 
@@ -96,9 +102,12 @@ const Appointment = () => {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Calendar className="h-8 w-8 text-green-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Appointment Requested!</h3>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  Appointment Requested!
+                </h3>
                 <p className="text-gray-600">
-                  Thank you for your appointment request. We'll contact you soon to confirm your appointment.
+                  Thank you for your appointment request. We'll contact you soon
+                  to confirm your appointment.
                 </p>
               </div>
             ) : (
@@ -183,8 +192,10 @@ const Appointment = () => {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600"
                     >
                       <option value="">Select Department</option>
-                      {departments.map(dept => (
-                        <option key={dept} value={dept}>{dept}</option>
+                      {departments.map((dept) => (
+                        <option key={dept} value={dept}>
+                          {dept}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -200,8 +211,10 @@ const Appointment = () => {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600"
                     >
                       <option value="">Select Doctor</option>
-                      {filteredDoctors.map(doctor => (
-                        <option key={doctor} value={doctor}>{doctor}</option>
+                      {filteredDoctors.map((doctor) => (
+                        <option key={doctor} value={doctor}>
+                          {doctor}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -230,7 +243,9 @@ const Appointment = () => {
                     disabled={isSubmitting || isFormIncomplete}
                     className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105"
                   >
-                    {isSubmitting ? 'Booking Appointment...' : 'Book Appointment'}
+                    {isSubmitting
+                      ? "Booking Appointment..."
+                      : "Book Appointment"}
                   </button>
                 </div>
               </form>
