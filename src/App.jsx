@@ -7,6 +7,8 @@ import PatientProfile from "./components/PatientProfile/PatientProfile";
 
 import Reception from "./components/Reception/Reception";
 
+
+
 function App() {
   return (
     <Router>
