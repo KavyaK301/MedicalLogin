@@ -32,11 +32,12 @@ const Hero = () => {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600">
         <div className="absolute inset-0 bg-black/20"></div>
-        <img 
-          src="https://images.pexels.com/photos/236380/pexels-photo-236380.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-          alt="Medical facility"
-          className="w-full h-full object-cover mix-blend-overlay"
-        />
+       <img 
+  src="https://images.pexels.com/photos/236380/pexels-photo-236380.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
+  alt="Medical facility"
+  className="w-full h-full object-cover"
+/>
+
       </div>
 
       <div className="relative z-10 container mx-auto px-4 pt-20">
@@ -44,7 +45,7 @@ const Hero = () => {
           {/* Welcome Message */}
           <div className="lg:col-span-3 text-center mb-12">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
-              WELCOME TO MEDILAB
+              WELCOME TO MEDITRACK
             </h1>
             <p className="text-xl text-blue-100 animate-fade-in-delay">
               We are team of talented medical professionals providing exceptional healthcare
@@ -54,7 +55,7 @@ const Hero = () => {
           {/* Why Choose Us Box */}
           <div className="lg:col-span-1">
             <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-transform duration-300">
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Why Choose Medilab?</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Why Choose MediTrack?</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Our commitment to excellence in healthcare combines cutting-edge medical technology 
                 with compassionate care. We provide comprehensive medical services with a focus on 
