@@ -5,7 +5,6 @@ import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Tab from "@mui/material/Tab";
@@ -13,6 +12,9 @@ import Tabs from "@mui/material/Tabs";
 import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
@@ -21,12 +23,32 @@ function Header(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ✅ Fixed tabValue check with '/reception/' prefix
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleBillingHover = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleBillingClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMenuItemClick = (path) => {
+    navigate(path);
+    handleBillingClose();
+  };
+
   const tabValue = (() => {
     if (location.pathname.startsWith("/reception/registration")) return 0;
     if (location.pathname.startsWith("/reception/management")) return 1;
     if (location.pathname.startsWith("/reception/appointment")) return 2;
-    if (location.pathname.startsWith("/reception/billing")) return 3;
+    if (
+      location.pathname.startsWith("/reception/billing") ||
+      location.pathname.startsWith("/reception/generate-bill") ||
+      location.pathname.startsWith("/reception/bill-history")
+    )
+      return 3;
     return false;
   })();
 
@@ -42,7 +64,8 @@ function Header(props) {
   };
 
   return (
-    <React.Fragment>
+    <>
+      {/* Top App Bar */}
       <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
           <Grid container spacing={1} sx={{ alignItems: "center" }}>
@@ -56,22 +79,22 @@ function Header(props) {
                 <MenuIcon />
               </IconButton>
             </Grid>
-            <Grid item xs />
             <Grid item>
-              <Link
-                href="/"
-                variant="body2"
+              <Typography
+                variant="h6"
                 sx={{
-                  textDecoration: "none",
-                  color: lightColor,
-                  "&:hover": {
-                    color: "white",
-                  },
+                  fontWeight: "bold",
+                  fontSize: "1.3rem",
+                  fontFamily:
+                    "'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif",
+                  color: "#ffffff",
+                  letterSpacing: "0.05em",
                 }}
               >
-                {/* Optional link */}
-              </Link>
+                MediTrack
+              </Typography>
             </Grid>
+            <Grid item xs />
             <Grid item>
               <Tooltip title="Alerts • No alerts">
                 <IconButton color="inherit">
@@ -88,63 +111,92 @@ function Header(props) {
         </Toolbar>
       </AppBar>
 
+      {/* Reception & Tabs Combined Bar */}
       <AppBar
         component="div"
         color="primary"
         position="static"
         elevation={0}
-        sx={{ zIndex: 0 }}
+        sx={{ px: 3, py: 2 }}
       >
-        <Toolbar>
-          <Grid container spacing={5} sx={{ alignItems: "center" }}>
-            <Grid item xs>
-              <Typography
-                color="inherit"
-                variant="h4"
-                component="h1"
-                sx={{
-                  fontWeight: "bold",
-                  letterSpacing: "0.3rem", // adjust spacing here
-                  fontFamily: "'Roboto Slab', serif",
-                }}
+        <Toolbar
+          disableGutters
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            minHeight: "64px",
+          }}
+        >
+          {/* Reception Heading */}
+          <Typography
+            variant="h5"
+            component="h1"
+            sx={{
+              fontWeight: "bold",
+              letterSpacing: "0.1rem",
+              fontFamily:
+                "'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif",
+              color: "#fff",
+              fontSize: 39,
+              pb: 0.5,
+            }}
+          >
+            Reception
+          </Typography>
+
+          {/* Right Tabs */}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Tabs value={tabValue} textColor="inherit">
+              <Tab
+                label="Patient Registration"
+                onClick={() => navigate("/reception/registration")}
+                sx={{ ...tabStyle, mr: 4 }}
+              />
+              <Tab
+                label="Patient Management"
+                onClick={() => navigate("/reception/management")}
+                sx={{ ...tabStyle, mr: 4 }}
+              />
+              <Tab
+                label="Appointment"
+                onClick={() => navigate("/reception/appointment")}
+                sx={{ ...tabStyle, mr: 4 }}
+              />
+              <Tab
+                label="Billing"
+                aria-controls={open ? "billing-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onMouseEnter={handleBillingHover}
+                sx={{ ...tabStyle }}
+              />
+            </Tabs>
+
+            <Menu
+              id="billing-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleBillingClose}
+              MenuListProps={{ onMouseLeave: handleBillingClose }}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
+            >
+              <MenuItem
+                onClick={() => handleMenuItemClick("/reception/generate-bill")}
               >
-                Reception
-              </Typography>
-            </Grid>
-          </Grid>
+                Generate Bill
+              </MenuItem>
+              <MenuItem
+                onClick={() => handleMenuItemClick("/reception/bill-history")}
+              >
+                Bill History
+              </MenuItem>
+            </Menu>
+          </Box>
         </Toolbar>
       </AppBar>
-
-      <AppBar
-        component="div"
-        position="static"
-        elevation={0}
-        sx={{ zIndex: 0 }}
-      >
-        <Tabs value={tabValue} textColor="inherit">
-          <Tab
-            label="Patient Registration"
-            onClick={() => navigate("/reception/registration")}
-            sx={tabStyle}
-          />
-          <Tab
-            label="Patient Management"
-            onClick={() => navigate("/reception/management")}
-            sx={tabStyle}
-          />
-          <Tab
-            label="Appointment"
-            onClick={() => navigate("/reception/appointment")}
-            sx={tabStyle}
-          />
-          <Tab
-            label="Billing"
-            onClick={() => navigate("/reception/billing")}
-            sx={tabStyle}
-          />
-        </Tabs>
-      </AppBar>
-    </React.Fragment>
+    </>
   );
 }
 
