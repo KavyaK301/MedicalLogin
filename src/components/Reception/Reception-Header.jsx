@@ -26,7 +26,7 @@ function Header(props) {
     if (location.pathname.startsWith("/reception/registration")) return 0;
     if (location.pathname.startsWith("/reception/management")) return 1;
     if (location.pathname.startsWith("/reception/appointment")) return 2;
-    if (location.pathname.startsWith("/reception/usage")) return 3;
+    if (location.pathname.startsWith("/reception/billing")) return 3;
     return false;
   })();
 
@@ -96,9 +96,18 @@ function Header(props) {
         sx={{ zIndex: 0 }}
       >
         <Toolbar>
-          <Grid container spacing={1} sx={{ alignItems: "center" }}>
+          <Grid container spacing={5} sx={{ alignItems: "center" }}>
             <Grid item xs>
-              <Typography color="inherit" variant="h5" component="h1">
+              <Typography
+                color="inherit"
+                variant="h4"
+                component="h1"
+                sx={{
+                  fontWeight: "bold",
+                  letterSpacing: "0.3rem", // adjust spacing here
+                  fontFamily: "'Roboto Slab', serif",
+                }}
+              >
                 Reception
               </Typography>
             </Grid>
@@ -129,8 +138,8 @@ function Header(props) {
             sx={tabStyle}
           />
           <Tab
-            label="Usage"
-            onClick={() => navigate("/reception/usage")}
+            label="Billing"
+            onClick={() => navigate("/reception/billing")}
             sx={tabStyle}
           />
         </Tabs>
