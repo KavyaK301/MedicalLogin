@@ -11,9 +11,8 @@ import {
   User,
 } from "lucide-react";
 
-const MedilabHeader = () => {
+const MedilabHeader = ({ onLoginClick }) => {
   const [isDepartmentsOpen, setIsDepartmentsOpen] = useState(false);
-  const [departmentsTimeout, setDepartmentsTimeout] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const profileRef = useRef(null);
@@ -37,11 +36,6 @@ const MedilabHeader = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLoginClick = () => {
-    setIsLoggedIn(true);
-    setProfileDropdownOpen(false);
-  };
-
   const handleLogoutClick = () => {
     setIsLoggedIn(false);
     setProfileDropdownOpen(false);
@@ -49,7 +43,7 @@ const MedilabHeader = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 scroll-smooth">
-      {/* Top header */}
+      {/* Top Header */}
       <div className="bg-blue-600 text-white py-3 px-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-6">
@@ -64,35 +58,27 @@ const MedilabHeader = () => {
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex space-x-3">
-              <Facebook className="h-4 w-4 hover:text-blue-200 cursor-pointer" />
-              <Instagram className="h-4 w-4 hover:text-blue-200 cursor-pointer" />
-              <Linkedin className="h-4 w-4 hover:text-blue-200 cursor-pointer" />
+              <Facebook className="h-4 w-4 hover:text-blue-200 cursor-pointer focus:outline-none" />
+              <Instagram className="h-4 w-4 hover:text-blue-200 cursor-pointer focus:outline-none" />
+              <Linkedin className="h-4 w-4 hover:text-blue-200 cursor-pointer focus:outline-none" />
             </div>
-            <X className="h-4 w-4 hover:text-blue-200 cursor-pointer ml-4" />
+            <X className="h-4 w-4 hover:text-blue-200 cursor-pointer ml-4 focus:outline-none" />
           </div>
         </div>
       </div>
 
-      {/* Navbar */}
+      {/* Main Navbar */}
       <nav className="bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
-            {/* Logo */}
             <h1 className="text-2xl font-bold text-gray-700">MediTrack</h1>
 
-            {/* Navbar links */}
             <div className="flex items-center space-x-8">
-              <a href="#hero" className="text-blue-600 font-medium">
-                Home
-              </a>
-              <a href="#about" className="text-gray-600 hover:text-blue-600">
-                About
-              </a>
-              <a href="#services" className="text-gray-600 hover:text-blue-600">
-                Services
-              </a>
+              <a href="#hero" className="text-blue-600 font-medium focus:outline-none">Home</a>
+              <a href="#about" className="text-gray-600 hover:text-blue-600 focus:outline-none">About</a>
+              <a href="#services" className="text-gray-600 hover:text-blue-600 focus:outline-none">Services</a>
 
-              {/* Departments dropdown */}
+              {/* Departments Dropdown */}
               <div
                 className="relative"
                 onMouseEnter={() => setIsDepartmentsOpen(true)}
@@ -100,7 +86,7 @@ const MedilabHeader = () => {
               >
                 <a
                   href="#departments"
-                  className="text-gray-600 hover:text-blue-600"
+                  className="text-gray-600 hover:text-blue-600 focus:outline-none"
                 >
                   Departments
                 </a>
@@ -110,7 +96,7 @@ const MedilabHeader = () => {
                       <a
                         key={idx}
                         href={dept.link}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 focus:outline-none"
                       >
                         {dept.name}
                       </a>
@@ -119,34 +105,36 @@ const MedilabHeader = () => {
                 )}
               </div>
 
-              <a href="#doctors" className="text-gray-600 hover:text-blue-600">
+              <a href="#doctors" className="text-gray-600 hover:text-blue-600 focus:outline-none">
                 Doctors
               </a>
-              <a href="#contact" className="text-gray-600 hover:text-blue-600">
+              <a href="#contact" className="text-gray-600 hover:text-blue-600 focus:outline-none">
                 Contact
               </a>
-              <a href="#appointment" className="text-gray-600 font-medium">
+              <a
+                href="#appointment"
+                className="text-gray-600 font-medium focus:outline-none"
+              >
                 Make Appointment
               </a>
             </div>
 
-            {/* Login / Profile button */}
+            {/* Login / Profile Button */}
             <div className="relative" ref={profileRef}>
               {isLoggedIn ? (
                 <div>
                   <button
                     onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 flex items-center"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 flex items-center focus:outline-none"
                   >
                     <User className="w-4 h-4 mr-2" />
                     Profile
                   </button>
-
                   {profileDropdownOpen && (
                     <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 shadow-md rounded-md z-50">
                       <button
                         onClick={handleLogoutClick}
-                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 focus:outline-none"
                       >
                         <LogOut className="w-4 h-4 inline mr-2" />
                         Logout
@@ -156,8 +144,8 @@ const MedilabHeader = () => {
                 </div>
               ) : (
                 <button
-                  onClick={handleLoginClick}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 flex items-center"
+                  onClick={onLoginClick}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 flex items-center focus:outline-none"
                 >
                   <LogIn className="w-4 h-4 mr-2" />
                   Login

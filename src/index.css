@@ -11,6 +11,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -35,34 +36,31 @@ a:hover {
   color: #2563eb; /* blue-600 */
 }
 
-button {
+/* Updated button styles - more specific selector to avoid conflicts */
+button:not([style*="background"]):not(.modal-close-btn):not(.text-blue-700) {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #ffffff; /* blue-500 */
+  background-color: #3b82f6; /* blue-500 */
   color: white;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 
-button:hover {
+button:not([style*="background"]):not(.modal-close-btn):not(.text-blue-700):hover {
   background-color: #2563eb; /* blue-600 */
 }
 
-input,
-textarea,
-select {
+input, textarea, select {
   background-color: white;
   color: black;
   border: 1px solid #d1d5db; /* gray-300 */
 }
 
-input:focus,
-textarea:focus,
-select:focus {
+input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: #2563eb; /* blue-600 */
   box-shadow: 0 0 0 1px #2563eb;
@@ -76,4 +74,42 @@ select:focus {
   border-radius: 8px;
   padding: 1rem;
   text-align: center;
+}
+
+#root {
+  height: 100%;
+}
+
+/* Enhanced close button override with higher specificity */
+.modal-close-btn,
+button[style*="background: transparent"] {
+  background: transparent !important;
+  border: none !important;
+  padding: 8px !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  color: #6b7280 !important; /* gray-500 */
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus,
+.modal-close-btn:active,
+button[style*="background: transparent"]:hover,
+button[style*="background: transparent"]:focus,
+button[style*="background: transparent"]:active {
+  background: transparent !important;
+  color: #374151 !important; /* gray-700 */
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Additional protection for inline styled buttons */
+button[style] {
+  all: revert;
+}
+
+button[style]:hover {
+  all: revert;
 }

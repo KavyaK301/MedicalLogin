@@ -13,14 +13,14 @@ import Testimonials from "./Testimonials";
 import Contact from "./Contact";
 import Footer from "./Footer";
 
-const Home = () => {
+// ✅ receive the prop
+const Home = ({ onLoginClick }) => {
   return (
     <>
-      <Header />
+      {/* ✅ pass it to Header */}
+      <Header onLoginClick={onLoginClick} />
 
       <div className="pt-[130px]">
-        {" "}
-        {/* Adjust based on total header height */}
         <Hero />
         <About />
         <Services />
