@@ -21,41 +21,25 @@ function App() {
 
       {showLoginPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="relative bg-white p-6 rounded-md shadow-md w-full max-w-md overflow-y-auto max-h-screen">
-            <button
-              className="absolute top-2 right-2 text-blue-500 text-lg font-bold focus:outline-none hover:text-blue-500"
-              onClick={() => setShowLoginPopup(false)}
-            >
-              ✕
-            </button>
-            <Login
-              onClose={() => setShowLoginPopup(false)}
-              onSignupClick={() => {
-                setShowLoginPopup(false);
-                setShowSignupPopup(true);
-              }}
-            />
-          </div>
+          <Login
+            onClose={() => setShowLoginPopup(false)}
+            onSignupClick={() => {
+              setShowLoginPopup(false);
+              setShowSignupPopup(true);
+            }}
+          />
         </div>
       )}
 
       {showSignupPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="relative bg-white p-6 rounded-md shadow-md w-full max-w-md overflow-y-auto max-h-screen">
-            <button
-              className="absolute top-2 right-2 text-blue-500 text-lg font-bold focus:outline-none hover:text-blue-500"
-              onClick={() => setShowSignupPopup(false)}
-            >
-              ✕
-            </button>
-            <Signup
-              onClose={() => setShowSignupPopup(false)}
-              onLoginClick={() => {
-                setShowSignupPopup(false);
-                setShowLoginPopup(true);
-              }}
-            />
-          </div>
+          <Signup
+            onClose={() => setShowSignupPopup(false)}
+            onLoginClick={() => {
+              setShowSignupPopup(false);
+              setShowLoginPopup(true);
+            }}
+          />
         </div>
       )}
     </Router>
